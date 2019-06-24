@@ -11,7 +11,7 @@
     "@angular/platform-browser": "8.0.2",
     "@angular/platform-browser-dynamic": "8.0.2",
     "@angular/router": "8.0.2",
-    "angular-in-memory-web-api": "0.8.0",
+    "angular-in-memory-web-api": "^0.8.0",
     "core-js": "2.6.9",
     "jasmine-core": "2.99.1",
     "jasmine-marbles": "0.5.0",
