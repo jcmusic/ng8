@@ -27,6 +27,18 @@ export class HeroService {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' })
   };
 
+  searchHeroes(term: string): Observable<Hero[]> {
+    if (!term.trim()) {
+      return of([]);
+    }
+    let url = `${this.heroesUrl}/?name=${term}`;
+    return this.http.get<Hero[]>(url)
+      .pipe(
+        tap(_ => this.log(`found heroes matching ${term}`)),
+        catchError(this.handleError('searchHeroes', []))
+      );
+  }
+
   deleteHero(hero: Hero | number): Observable<Hero> {
     let id = typeof hero === 'number' ? hero : hero.id;
     let url = `${this.heroesUrl}/${id}`;
