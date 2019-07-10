@@ -1,0 +1,7 @@
+<h3>Asgn2</h3>
+<input type="text" [(ngModel)]="username" placeholder="userName">
+
+<p>
+U/N: {{ username }}
+</p>    
+<button [disabled]=!username (click)="resetName()">Clear</button>
