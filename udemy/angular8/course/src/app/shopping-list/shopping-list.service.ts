@@ -21,6 +21,11 @@ export class ShoppingListService{
         this.ingredients.push(ingredient);
         this.broadcastChange();
     }
+    addIngredients(ingredients: Ingredient[]){
+        console.log('adding ' + ingredients.length + ' ingredients');
+        this.ingredients.push(...ingredients);
+        this.broadcastChange();
+    }
     removeIngredient(index: number){
         console.log('removing ingredient at index=' + index);
         (index:number) => { 

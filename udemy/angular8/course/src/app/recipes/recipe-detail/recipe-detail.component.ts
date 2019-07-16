@@ -22,11 +22,12 @@ export class RecipeDetailComponent implements OnInit {
 
   toShoppingList(){
     console.log('sending ingredients to the shoppingList');
-    this.recipe.ingredients.forEach(
-      (ingredient) => {
-        this.shoppingListService.addIngredient(ingredient);
-      }
-    );
+    // this.recipe.ingredients.forEach(
+    //   (ingredient) => {
+    //     this.shoppingListService.addIngredient(ingredient);
+    //   }
+    // );
+    this.shoppingListService.addIngredients(this.recipe.ingredients);
   }
 
 }
