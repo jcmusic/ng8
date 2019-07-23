@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 
 import { Recipe } from '../../recipe.model';
 import { Ingredient } from '../../../shared/ingredient.model';
-import { RecipeService } from '../../recipe.service';
 import { ShoppingListService } from '../../../shopping-list/shopping-list.service';
 
 @Component({
@@ -13,22 +12,18 @@ import { ShoppingListService } from '../../../shopping-list/shopping-list.servic
 })
 export class RecipeItemComponent implements OnInit {
   @Input() recipe: Recipe;
+  @Input() index: number;
 
   constructor(
-    private recipeService: RecipeService,
     private shoppingListService: ShoppingListService) { }
 
   ngOnInit() {
     // this.shoppingListService.i = this.recipe.ingredients;
     this.shoppingListService.ingredientsChanged
       .subscribe(
-        (ingredient: Ingredient) => {
-          this.recipe.ingredients.push(ingredient);
+        (ingredients: Ingredient[]) => {
+          this.recipe.ingredients.push(...ingredients);
         }
       )
     }
-
-  onSelected(){
-    this.recipeService.recipeSelected.emit(this.recipe);
-  }
 }

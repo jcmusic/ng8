@@ -1,15 +1,16 @@
-import { Injectable, OnInit, EventEmitter } from '@angular/core';
+import { Injectable, OnInit, OnDestroy } from '@angular/core';
 
 import { Recipe } from './recipe.model';
 import { Ingredient } from '../shared/ingredient.model';
+import { Subject, Subscription } from 'rxjs';
 
 // @Injectable({
 //     providedIn: RecipesComponent,
 // })
 @Injectable()
-export class RecipeService implements OnInit {
-    recipeSelected = new EventEmitter<Recipe>();
-    
+export class RecipeService implements OnInit, OnDestroy {
+    recipeSelected = new Subject<Recipe>();
+    private recipeChangeSub: Subscription;
     private recipes : Recipe[] = [
         new Recipe(
             'Tasty Chilli', 
@@ -45,8 +46,13 @@ export class RecipeService implements OnInit {
     //   ];
     //   console.log('RecipeService Initialized');
     }
+    ngOnDestroy() : void {
 
+    }
     getRecipes(){
         return this.recipes.slice();  //returns a COPY of our array. - Reference type would allow change
+    }
+    getRecipe(index: number){
+        return this.recipes[index]; 
     }
 }
